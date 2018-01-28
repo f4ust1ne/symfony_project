@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image:url('{{asset('img/home-bg.jpg')}}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{ post.titre  }}</h1>
+              <span class="meta">Posté par
+                {{ post.auteur }}
+                le {{ post.published|date('d-m-Y') }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+           <a class="btn btn-primary " href="{{ path('homepage') }}">&larr; Retour à la liste</a>
+           <a class="btn btn-primary " href="{{ path('blog_delete',{'postid' : post.id}) }}">Supprimer</a>
+	   <a class="btn btn-primary " href="{{ path('blog_edit',{'postid' : post.id}) }}">Editer</a>
+           <br><br>
+           {{ post.content  | nl2br}}
+           <br><br>
+           <a class="btn btn-primary" href="{{ path('homepage') }}">&larr; Retour à la liste</a>
+           <a class="btn btn-primary" href="{{ path('blog_delete',{'postid' : post.id}) }}">Supprimer</a>
+	   <a class="btn btn-primary" href="{{ path('blog_edit',{'postid' : post.id}) }}">Editer</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+   
+ 
+   {% endblock %}
+

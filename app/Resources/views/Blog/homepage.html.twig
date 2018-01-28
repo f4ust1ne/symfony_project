@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image:url(' {{ asset('img/home-bg.jpg') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Omics News  </h1>
+              <h3><br/> Les dernières actualités omiques</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% for post in posts %}
+          <div class="post-preview">
+            <a href="{{ path('blog_post',{'postid' : post.id}) }}">
+              <h2 class="post-title">
+               {{ post.titre  }}
+              </h2>
+              <h3 class="post-subtitle">
+                {{ post.description}}
+              </h3>
+            </a>
+            <p class="post-meta">Posté par
+               {{ post.auteur }}
+             le {{ post.published|date('d-m-Y') }}</p>
+          </div>
+          {% else %}
+            <div class="warning"> Il n'y a pas d'article ici </div>
+          {% endfor %}
+          <!-- Pager -->
+          <div class="clearfix">
+               {% if page != 1 %}
+                 {% set previous  = page -2 %}
+                        <a  class="btn btn-primary float-left" href="{{path('homepage',{'page' : previous})}}">&larr; Plus récents</a>
+                    
+               {% endif %}
+               {% if page*3 < totalPostCount %}
+                    
+                       <a  class="btn btn-primary float-right" href="{{path('homepage',{'page' : page})}}"> Plus anciens &rarr;</a>
+               {% endif %}
+           
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   {% endblock %}

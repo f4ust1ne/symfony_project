@@ -1,0 +1,25 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+{{ form_errors(form.email) }}
+{{ form_label(form.email, "Email ") }}
+{{ form_widget(form.email) }}    
+
+{{ form_errors(form.username) }}
+{{ form_label(form.username, "Nom d'utilisateur ") }}
+{{ form_widget(form.username) }}
+   
+{{ form_errors(form.plainPassword.first) }}
+{{ form_label(form.plainPassword.first, "Mot de passe ") }}
+{{ form_widget(form.plainPassword.first) }}
+
+{{ form_errors(form.plainPassword.second) }}
+{{ form_label(form.plainPassword.second, "Confirmez le mot de passe ") }}
+{{ form_widget(form.plainPassword.second) }}
+
+<br>
+    <div>
+        <input class="btn btn-success" type="submit" id="_submit" name="_submit" value="Valider" />
+    </div>
+{{ form_end(form) }}
